@@ -29,29 +29,32 @@
 // DEFINE VARIABLES
 #define ARDUINOJSON_USE_DOUBLE      1 
 // DEFINE THE PINS THAT WILL BE MAPPED TO THE 7 SEG DISPLAY BELOW, 'a' to 'g'
-#define a     15
+#define a 15
 /* Complete all others */
-
-
+#define b 32
+#define c 33
+#define d 25
+#define e 26
+#define f 27
+#define g 14
+#define dp 12
 
 // DEFINE VARIABLES FOR TWO LEDs AND TWO BUTTONs. LED_A, LED_B, BTN_A , BTN_B
 #define LED_A 4
 /* Complete all others */
-
-
+#define LED_B 5
+#define BTN_A 6
+//#define BTN_B 7
 
 // MQTT CLIENT CONFIG  
-static const char* pubtopic       = "620012345";                    // Add your ID number here
-static const char* subtopic[]     = {"620012345_sub","/elet2415"};  // Array of Topics(Strings) to subscribe to
+static const char* pubtopic       = "620162688";                    // Add your ID number here
+static const char* subtopic[]     = {"620162688_sub","/elet2415"};  // Array of Topics(Strings) to subscribe to
 static const char* mqtt_server    = "address or ip";                // Broker IP address or Domain name as a String 
 static uint16_t mqtt_port         = 1883;
 
 // WIFI CREDENTIALS
 const char* ssid                  = "YOUR_SSID"; // Add your Wi-Fi ssid
 const char* password              = "YOUR_PASS"; // Add your Wi-Fi password 
-
-
-
 
 // TASK HANDLES 
 TaskHandle_t xMQTT_Connect          = NULL; 
@@ -77,7 +80,6 @@ int8_t getLEDStatus(int8_t LED);
 void setLEDState(int8_t LED, int8_t state);
 void toggleLED(int8_t LED);
   
-
 //############### IMPORT HEADER FILES ##################
 #ifndef NTP_H
 #include "NTP.h"
@@ -97,22 +99,39 @@ void setup() {
   // CONFIGURE THE ARDUINO PINS OF THE 7SEG AS OUTPUT
   pinMode(a,OUTPUT);
   /* Configure all others here */
+  pinMode(b,OUTPUT);
+  pinMode(c,OUTPUT);
+  pinMode(d,OUTPUT);
+  pinMode(e,OUTPUT);
+  pinMode(f,OUTPUT);
+  pinMode(g,OUTPUT);
+  pinMode(dp,OUTPUT);
+
+  pinMode(LED_A,OUTPUT);
+  pinMode(LED_B,OUTPUT);
 
   initialize();           // INIT WIFI, MQTT & NTP 
-  // vButtonCheckFunction(); // UNCOMMENT IF USING BUTTONS THEN ADD LOGIC FOR INTERFACING WITH BUTTONS IN THE vButtonCheck FUNCTION
 
+  vButtonCheckFunction(); // UNCOMMENT IF USING BUTTONS THEN ADD LOGIC FOR INTERFACING WITH BUTTONS IN THE vButtonCheck FUNCTION
+  pinMode(BTN_A,INPUT_PULLUP);
+  //pinMode(BTN_B,INPUT_PULLUP);
 }
   
-
-
 void loop() {
     // put your main code here, to run repeatedly: 
-    
+
+    //output 8 on 7-seg
+    digitalWrite(A,HIGH);
+    digitalWrite(B,HIGH);
+    digitalWrite(C,HIGH);
+    digitalWrite(D,HIGH)
+    digitalWrite(E,HIGH);
+    digitalWrite(F,HIGH);
+    digitalWrite(G,HIGH;
+    digitalWrite(DP,LOW);
+
+    vButtonCheck();
 }
-
-
-
-
   
 //####################################################################
 //#                          UTIL FUNCTIONS                          #       
@@ -121,6 +140,9 @@ void vButtonCheck( void * pvParameters )  {
     configASSERT( ( ( uint32_t ) pvParameters ) == 1 );     
       
     for( ;; ) {
+      if (digitalRead(BTN_A) == LOW){
+        GDP();
+      }
         // Add code here to check if a button(S) is pressed
         // then execute appropriate function if a button is pressed  
 
@@ -237,19 +259,144 @@ bool publish(const char *topic, const char *payload){
 
 void Display(unsigned char number){
   /* This function takes an integer between 0 and 9 as input. This integer must be written to the 7-Segment display */
-  
+
+  switch (num){
+    case 1{
+      digitalWrite(A,LOW);
+      digitalWrite(B,HIGH);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,LOW)
+      digitalWrite(E,LOW);
+      digitalWrite(F,LOW);
+      digitalWrite(G,LOW);
+      digitalWrite(DP,LOW);
+      break;
+    }
+
+    case 2{
+      digitalWrite(A,HIGH);
+      digitalWrite(B,LOW);
+      digitalWrite(C,LOW);
+      digitalWrite(D,HIGH)
+      digitalWrite(E,LOW);
+      digitalWrite(F,HIGH);
+      digitalWrite(G,HIGH;
+      digitalWrite(DP,LOW);
+      break;
+    }
+
+    case 3{
+      digitalWrite(A,HIGH);
+      digitalWrite(B,HIGH);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,HIGH)
+      digitalWrite(E,LOW);
+      digitalWrite(F,LOW);
+      digitalWrite(G,LOW);
+      digitalWrite(DP,LOW);
+      break;
+    }
+
+    case 4{
+      digitalWrite(A,LOW);
+      digitalWrite(B,HIGH);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,LOW)
+      digitalWrite(E,LOW);
+      digitalWrite(F,HIGH);
+      digitalWrite(G,HIGH);
+      digitalWrite(DP,LOW);
+      break;
+    }
+
+    case 5{
+      digitalWrite(A,HIGH);
+      digitalWrite(B,LOW);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,HIGH)
+      digitalWrite(E,LOW);
+      digitalWrite(F,HIGH);
+      digitalWrite(G,HIGH);
+      digitalWrite(DP,LOW);
+      break;
+    }
+
+    case 6{
+      digitalWrite(A,HIGH);
+      digitalWrite(B,LOW);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,HIGH)
+      digitalWrite(E,HIGH);
+      digitalWrite(F,HIGH);
+      digitalWrite(G,HIGH);
+      digitalWrite(DP,LOW);
+      break;
+    }
+
+    case 7{
+      digitalWrite(A,HIGH);
+      digitalWrite(B,HIGH);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,LOW)
+      digitalWrite(E,LOW);
+      digitalWrite(F,LOW);
+      digitalWrite(G,LOW;
+      digitalWrite(DP,LOW);
+      break;
+    }
+
+    case 8{
+      digitalWrite(A,HIGH);
+      digitalWrite(B,HIGH);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,HIGH)
+      digitalWrite(E,HIGH);
+      digitalWrite(F,HIGH);
+      digitalWrite(G,HIGH;
+      digitalWrite(DP,LOW);
+      break;
+    }
+
+    case 9{
+      digitalWrite(A,HIGH);
+      digitalWrite(B,HIGH);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,HIGH)
+      digitalWrite(E,LOW);
+      digitalWrite(F,HIGH);
+      digitalWrite(G,HIGH;
+      digitalWrite(DP,LOW);
+      break;
+    }
+  }
 }
 
 int8_t getLEDStatus(int8_t LED) {
   // RETURNS THE STATE OF A SPECIFIC LED. 0 = LOW, 1 = HIGH  
+
+  if (digitalRead(LED) == LOW){
+    return 0;
+  }
+  else{
+    return 1;
+  }
 }
 
 void setLEDState(int8_t LED, int8_t state){
   // SETS THE STATE OF A SPECIFIC LED   
+
+  digitalWrite(LED,state);
 }
 
 void toggleLED(int8_t LED){
   // TOGGLES THE STATE OF SPECIFIC LED   
+
+  if (digitalRead(LED) == LOW){
+    digitalWrite(LED,HIGH);
+  }
+  else{
+    digitalWrite(LED,LOW);
+  }
 }
 
 void GDP(void){
@@ -259,10 +406,16 @@ void GDP(void){
   /* Add code here to generate a random integer and then assign 
      this integer to number variable below
   */
-   number = 0 ;
+  number = 0 ;
+
+  while (randomNum > 9 & randomNum < 0){
+    srand(getTimeStamp());
+    number = ((rand() % uLimit) + lLimit);
+  }
 
   // DISPLAY integer on 7Seg. by 
   /* Add code here to calling appropriate function that will display integer to 7-Seg*/
+  Display(number);
 
   // PUBLISH number to topic.
   JsonDocument doc; // Create JSon object
@@ -270,13 +423,16 @@ void GDP(void){
 
   // Add key:value pairs to Json object according to below schema
   // ‘{"id": "student_id", "timestamp": 1702212234, "number": 9, "ledA": 0, "ledB": 0}’
-  doc["id"]         = "ID"; // Change to your student ID number
+  doc["id"]         = "620162688"; // Change to your student ID number
   doc["timestamp"]  = getTimeStamp();
+
   /*Add code here to insert all other variabes that are missing from Json object
   according to schema above
   */
+  doc["number"] = number;
+  doc["ledA"] = getLEDstatus(LED_A);
+  doc["ledB"] = getLEDstatus(LED_B);
 
   serializeJson(doc, message);  // Seralize / Covert JSon object to JSon string and store in char* array
   publish(pubtopic, message);
-
 }
