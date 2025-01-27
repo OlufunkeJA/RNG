@@ -215,9 +215,11 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
     if(strcmp(led, "LED A") == 0){
       /*Add code to toggle LED A with appropriate function*/
+      toggleLED(LED_A);
     }
     if(strcmp(led, "LED B") == 0){
       /*Add code to toggle LED B with appropriate function*/
+      toggleLED(LED_B);
     }
 
     // PUBLISH UPDATE BACK TO FRONTEND
@@ -226,17 +228,18 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
     // Add key:value pairs to Json object according to below schema
     // ‘{"id": "student_id", "timestamp": 1702212234, "number": 9, "ledA": 0, "ledB": 0}’
-    doc["id"]         = "ID"; // Change to your student ID number
+    doc["id"]         = "620162688"; // Change to your student ID number
     doc["timestamp"]  = getTimeStamp();
     /*Add code here to insert all other variabes that are missing from Json object
     according to schema above
     */
+    doc["number"] = number;
+    doc["ledA"] = getLEDStatus(LED_A);
+    doc["ledB"] = getLEDStatus(LED_B);
 
     serializeJson(doc, message);  // Seralize / Covert JSon object to JSon string and store in char* array  
-    publish("topic", message);    // Publish to a topic that only the Frontend subscribes to.
-          
+    publish("topic", message);    // Publish to a topic that only the Frontend subscribes to. 
   } 
-
 }
 
 bool publish(const char *topic, const char *payload){   
@@ -384,7 +387,6 @@ int8_t getLEDStatus(int8_t LED) {
 
 void setLEDState(int8_t LED, int8_t state){
   // SETS THE STATE OF A SPECIFIC LED   
-
   digitalWrite(LED,state);
 }
 
