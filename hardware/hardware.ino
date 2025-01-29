@@ -43,18 +43,18 @@
 #define LED_A 4
 /* Complete all others */
 #define LED_B 5
-#define BTN_A 6
+#define BTN_A 22
 //#define BTN_B 7
 
 // MQTT CLIENT CONFIG  
 static const char* pubtopic       = "620162688";                    // Add your ID number here
 static const char* subtopic[]     = {"620162688_sub","/elet2415"};  // Array of Topics(Strings) to subscribe to
-static const char* mqtt_server    = "address or ip";                // Broker IP address or Domain name as a String 
+static const char* mqtt_server    = "www.yanacreations.com";                // Broker IP address or Domain name as a String 
 static uint16_t mqtt_port         = 1883;
 
 // WIFI CREDENTIALS
-const char* ssid                  = "YOUR_SSID"; // Add your Wi-Fi ssid
-const char* password              = "YOUR_PASS"; // Add your Wi-Fi password 
+const char* ssid                  = "MonaConnect"; // Add your Wi-Fi ssid
+const char* password              = ""; // Add your Wi-Fi password 
 
 // TASK HANDLES 
 TaskHandle_t xMQTT_Connect          = NULL; 
@@ -92,7 +92,6 @@ void toggleLED(int8_t LED);
 // Temporary Variables
 uint8_t number = 0;
 
-
 void setup() {
   Serial.begin(115200);  // INIT SERIAL  
 
@@ -110,17 +109,9 @@ void setup() {
   pinMode(LED_A,OUTPUT);
   pinMode(LED_B,OUTPUT);
 
-  initialize();           // INIT WIFI, MQTT & NTP 
+  Display (8);
 
-  //output 8 on 7-seg
-  digitalWrite(a,HIGH);
-  digitalWrite(b,HIGH);
-  digitalWrite(c,HIGH);
-  digitalWrite(d,HIGH);
-  digitalWrite(e,HIGH);
-  digitalWrite(f,HIGH);
-  digitalWrite(g,HIGH);
-  digitalWrite(dp,LOW);
+  initialize();           // INIT WIFI, MQTT & NTP 
 
   vButtonCheckFunction(); // UNCOMMENT IF USING BUTTONS THEN ADD LOGIC FOR INTERFACING WITH BUTTONS IN THE vButtonCheck FUNCTION
   pinMode(BTN_A,INPUT_PULLUP);
@@ -128,7 +119,8 @@ void setup() {
 }
   
 void loop() {
-    // put your main code here, to run repeatedly: 
+  // put your main code here, to run repeatedly: 
+  
 }
   
 //####################################################################
@@ -260,6 +252,15 @@ bool publish(const char *topic, const char *payload){
 
 void Display(unsigned char number){
   /* This function takes an integer between 0 and 9 as input. This integer must be written to the 7-Segment display */
+
+  /*digitalWrite(a,LOW);
+  digitalWrite(b,LOW);
+  digitalWrite(c,LOW);
+  digitalWrite(d,LOW);
+  digitalWrite(e,LOW);
+  digitalWrite(f,LOW);
+  digitalWrite(g,LOW);
+  digitalWrite(dp,LOW);*/
 
   switch (number){
     case 1:
@@ -400,8 +401,8 @@ void GDP(void){
   number = 1 ;
 
   while (number < 9 & number > 0){
-    srand(getTimeStamp());
-    number = ((rand() % 9) + 1);
+		srand(getTimeStamp());
+	  number = ((rand() % 9) + 0);
   }
 
   // DISPLAY integer on 7Seg. by 
