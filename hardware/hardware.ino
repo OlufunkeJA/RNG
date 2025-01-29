@@ -112,6 +112,16 @@ void setup() {
 
   initialize();           // INIT WIFI, MQTT & NTP 
 
+  //output 8 on 7-seg
+  digitalWrite(a,HIGH);
+  digitalWrite(b,HIGH);
+  digitalWrite(c,HIGH);
+  digitalWrite(d,HIGH);
+  digitalWrite(e,HIGH);
+  digitalWrite(f,HIGH);
+  digitalWrite(g,HIGH);
+  digitalWrite(dp,LOW);
+
   vButtonCheckFunction(); // UNCOMMENT IF USING BUTTONS THEN ADD LOGIC FOR INTERFACING WITH BUTTONS IN THE vButtonCheck FUNCTION
   pinMode(BTN_A,INPUT_PULLUP);
   //pinMode(BTN_B,INPUT_PULLUP);
@@ -119,18 +129,6 @@ void setup() {
   
 void loop() {
     // put your main code here, to run repeatedly: 
-
-    //output 8 on 7-seg
-    digitalWrite(A,HIGH);
-    digitalWrite(B,HIGH);
-    digitalWrite(C,HIGH);
-    digitalWrite(D,HIGH)
-    digitalWrite(E,HIGH);
-    digitalWrite(F,HIGH);
-    digitalWrite(G,HIGH;
-    digitalWrite(DP,LOW);
-
-    vButtonCheck();
 }
   
 //####################################################################
@@ -263,114 +261,105 @@ bool publish(const char *topic, const char *payload){
 void Display(unsigned char number){
   /* This function takes an integer between 0 and 9 as input. This integer must be written to the 7-Segment display */
 
-  switch (num){
-    case 1{
-      digitalWrite(A,LOW);
-      digitalWrite(B,HIGH);
-      digitalWrite(C,HIGH);
-      digitalWrite(D,LOW)
-      digitalWrite(E,LOW);
-      digitalWrite(F,LOW);
-      digitalWrite(G,LOW);
-      digitalWrite(DP,LOW);
+  switch (number){
+    case 1:
+      digitalWrite(a,LOW);
+      digitalWrite(b,HIGH);
+      digitalWrite(c,HIGH);
+      digitalWrite(d,LOW);
+      digitalWrite(e,LOW);
+      digitalWrite(f,LOW);
+      digitalWrite(g,LOW);
+      digitalWrite(dp,LOW);
       break;
-    }
 
-    case 2{
-      digitalWrite(A,HIGH);
-      digitalWrite(B,LOW);
-      digitalWrite(C,LOW);
-      digitalWrite(D,HIGH)
-      digitalWrite(E,LOW);
-      digitalWrite(F,HIGH);
-      digitalWrite(G,HIGH;
-      digitalWrite(DP,LOW);
+    case 2:
+      digitalWrite(a,HIGH);
+      digitalWrite(b,LOW);
+      digitalWrite(c,LOW);
+      digitalWrite(d,HIGH);
+      digitalWrite(e,LOW);
+      digitalWrite(f,HIGH);
+      digitalWrite(g,HIGH);
+      digitalWrite(dp,LOW);
       break;
-    }
 
-    case 3{
-      digitalWrite(A,HIGH);
-      digitalWrite(B,HIGH);
-      digitalWrite(C,HIGH);
-      digitalWrite(D,HIGH)
-      digitalWrite(E,LOW);
-      digitalWrite(F,LOW);
-      digitalWrite(G,LOW);
-      digitalWrite(DP,LOW);
+    case 3:
+      digitalWrite(a,HIGH);
+      digitalWrite(b,HIGH);
+      digitalWrite(c,HIGH);
+      digitalWrite(d,HIGH);
+      digitalWrite(e,LOW);
+      digitalWrite(f,LOW);
+      digitalWrite(g,LOW);
+      digitalWrite(dp,LOW);
       break;
-    }
 
-    case 4{
-      digitalWrite(A,LOW);
-      digitalWrite(B,HIGH);
-      digitalWrite(C,HIGH);
-      digitalWrite(D,LOW)
-      digitalWrite(E,LOW);
-      digitalWrite(F,HIGH);
-      digitalWrite(G,HIGH);
-      digitalWrite(DP,LOW);
+    case 4:
+      digitalWrite(a,LOW);
+      digitalWrite(b,HIGH);
+      digitalWrite(c,HIGH);
+      digitalWrite(d,LOW);
+      digitalWrite(e,LOW);
+      digitalWrite(f,HIGH);
+      digitalWrite(g,HIGH);
+      digitalWrite(dp,LOW);
       break;
-    }
 
-    case 5{
-      digitalWrite(A,HIGH);
-      digitalWrite(B,LOW);
-      digitalWrite(C,HIGH);
-      digitalWrite(D,HIGH)
-      digitalWrite(E,LOW);
-      digitalWrite(F,HIGH);
-      digitalWrite(G,HIGH);
-      digitalWrite(DP,LOW);
+    case 5:
+      digitalWrite(a,HIGH);
+      digitalWrite(b,LOW);
+      digitalWrite(c,HIGH);
+      digitalWrite(d,HIGH);
+      digitalWrite(e,LOW);
+      digitalWrite(f,HIGH);
+      digitalWrite(g,HIGH);
+      digitalWrite(dp,LOW);
       break;
-    }
 
-    case 6{
-      digitalWrite(A,HIGH);
-      digitalWrite(B,LOW);
-      digitalWrite(C,HIGH);
-      digitalWrite(D,HIGH)
-      digitalWrite(E,HIGH);
-      digitalWrite(F,HIGH);
-      digitalWrite(G,HIGH);
-      digitalWrite(DP,LOW);
+    case 6:
+      digitalWrite(a,HIGH);
+      digitalWrite(b,LOW);
+      digitalWrite(c,HIGH);
+      digitalWrite(d,HIGH);
+      digitalWrite(e,HIGH);
+      digitalWrite(f,HIGH);
+      digitalWrite(g,HIGH);
+      digitalWrite(dp,LOW);
       break;
-    }
 
-    case 7{
-      digitalWrite(A,HIGH);
-      digitalWrite(B,HIGH);
-      digitalWrite(C,HIGH);
-      digitalWrite(D,LOW)
-      digitalWrite(E,LOW);
-      digitalWrite(F,LOW);
-      digitalWrite(G,LOW;
-      digitalWrite(DP,LOW);
+    case 7:
+      digitalWrite(a,HIGH);
+      digitalWrite(b,HIGH);
+      digitalWrite(c,HIGH);
+      digitalWrite(d,LOW);
+      digitalWrite(e,LOW);
+      digitalWrite(f,LOW);
+      digitalWrite(g,LOW);
+      digitalWrite(dp,LOW);
       break;
-    }
 
-    case 8{
-      digitalWrite(A,HIGH);
-      digitalWrite(B,HIGH);
-      digitalWrite(C,HIGH);
-      digitalWrite(D,HIGH)
-      digitalWrite(E,HIGH);
-      digitalWrite(F,HIGH);
-      digitalWrite(G,HIGH;
-      digitalWrite(DP,LOW);
+    case 8:
+      digitalWrite(a,HIGH);
+      digitalWrite(b,HIGH);
+      digitalWrite(c,HIGH);
+      digitalWrite(d,HIGH);
+      digitalWrite(e,HIGH);
+      digitalWrite(f,HIGH);
+      digitalWrite(g,HIGH);
+      digitalWrite(dp,LOW);
       break;
-    }
 
-    case 9{
-      digitalWrite(A,HIGH);
-      digitalWrite(B,HIGH);
-      digitalWrite(C,HIGH);
-      digitalWrite(D,HIGH)
-      digitalWrite(E,LOW);
-      digitalWrite(F,HIGH);
-      digitalWrite(G,HIGH;
-      digitalWrite(DP,LOW);
+    case 9:
+      digitalWrite(a,HIGH);
+      digitalWrite(b,HIGH);
+      digitalWrite(c,HIGH);
+      digitalWrite(d,HIGH);
+      digitalWrite(e,LOW);
+      digitalWrite(f,HIGH);
+      digitalWrite(g,HIGH);
+      digitalWrite(dp,LOW);
       break;
-    }
   }
 }
 
@@ -408,11 +397,11 @@ void GDP(void){
   /* Add code here to generate a random integer and then assign 
      this integer to number variable below
   */
-  number = 0 ;
+  number = 1 ;
 
-  while (randomNum > 9 & randomNum < 0){
+  while (number < 9 & number > 0){
     srand(getTimeStamp());
-    number = ((rand() % uLimit) + lLimit);
+    number = ((rand() % 9) + 1);
   }
 
   // DISPLAY integer on 7Seg. by 
@@ -432,8 +421,8 @@ void GDP(void){
   according to schema above
   */
   doc["number"] = number;
-  doc["ledA"] = getLEDstatus(LED_A);
-  doc["ledB"] = getLEDstatus(LED_B);
+  doc["ledA"] = getLEDStatus(LED_A);
+  doc["ledB"] = getLEDStatus(LED_B);
 
   serializeJson(doc, message);  // Seralize / Covert JSon object to JSon string and store in char* array
   publish(pubtopic, message);
