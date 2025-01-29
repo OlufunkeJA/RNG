@@ -43,7 +43,7 @@
 #define LED_A 4
 /* Complete all others */
 #define LED_B 5
-#define BTN_A 22
+#define BTN_A 18
 //#define BTN_B 7
 
 // MQTT CLIENT CONFIG  
@@ -108,14 +108,14 @@ void setup() {
 
   pinMode(LED_A,OUTPUT);
   pinMode(LED_B,OUTPUT);
+  pinMode(BTN_A,INPUT_PULLUP);
 
-  Display (8);
 
   initialize();           // INIT WIFI, MQTT & NTP 
 
   vButtonCheckFunction(); // UNCOMMENT IF USING BUTTONS THEN ADD LOGIC FOR INTERFACING WITH BUTTONS IN THE vButtonCheck FUNCTION
-  pinMode(BTN_A,INPUT_PULLUP);
   //pinMode(BTN_B,INPUT_PULLUP);
+  Display(8);
 }
   
 void loop() {
@@ -128,15 +128,16 @@ void loop() {
 //####################################################################
 void vButtonCheck( void * pvParameters )  {
     configASSERT( ( ( uint32_t ) pvParameters ) == 1 );     
-      
+    int state = HIGH;
     for( ;; ) {
-      if (digitalRead(BTN_A) == LOW){
+      if (digitalRead(BTN_A) == LOW && state == HIGH){
         GDP();
+        Serial.println("button pressed");
       }
         // Add code here to check if a button(S) is pressed
         // then execute appropriate function if a button is pressed  
-
-        vTaskDelay(200 / portTICK_PERIOD_MS);  
+      state = digitalRead(BTN_A);
+      vTaskDelay(200 / portTICK_PERIOD_MS);  
     }
 }
 
@@ -361,6 +362,18 @@ void Display(unsigned char number){
       digitalWrite(g,HIGH);
       digitalWrite(dp,LOW);
       break;
+    
+    case 0:
+      digitalWrite(a,HIGH);
+      digitalWrite(b,HIGH);
+      digitalWrite(c,HIGH);
+      digitalWrite(d,HIGH);
+      digitalWrite(e,HIGH);
+      digitalWrite(f,HIGH);
+      digitalWrite(g,LOW);
+      digitalWrite(dp,LOW);
+      break;
+
   }
 }
 
@@ -400,7 +413,7 @@ void GDP(void){
   */
   number = 1 ;
 
-  while (number < 9 & number > 0){
+  while (number < 10 && number > 0){
 		srand(getTimeStamp());
 	  number = ((rand() % 9) + 0);
   }
