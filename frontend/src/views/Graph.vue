@@ -2,42 +2,6 @@
     <!-- HTML HERE -->    
     <h2>New Template</h2>
 
-    <v-container class = "container-fluid" align = "center">
-        <v-row class = "row" align = "center">
-            <v-col class = "col" align = "center" cols = "12"><canvas id="myChart"></canvas></v-col>
-            <v-col class = "col" align = "center" cols = "12"></v-col>
-            <v-btn class = "btn" text = "Refresh Graph" flat color = "secondary" variant = "outlined" @click = "updateGraph()"></v-btn>
-        </v-row>
-        <v-row class = "row">
-            <div class= "mt-5 mb-5"></div>
-        </v-row>
-        <v-row class = "row" align = "center">
-            <v-card class = "card mt-5 mb-5 mr-5 ml-5" subtitle = "LED A" width = "150" flat border align = "center" >
-                <v-card-item pa-0>Turned On</v-card-item>
-                <v-card-item pa-0>
-                    <span class = "text-h5, text-primary, font-weight-bold">
-                        {{led_A}}
-                    </span>
-                </v-card-item>
-                <v-card-item pa-0>Times</v-card-item>
-                <v-card-item>   
-                    <v-btn class = "ma-1 text-caption" text = "Update" rounded = "pill" flat color = "secondary" variant = "tonal" @click = "updateLEDCount('ledA')"></v-btn> 
-                </v-card-item>
-            </v-card>
-            <v-card class = "card mt-5 mb-5 mr-5 ml-5" subtitle = "LED B" width = "150" flat border align = "center" >
-                <v-card-item pa-0>Turned On</v-card-item>
-                <v-card-item pa-0>
-                    <span class = "text-h5, text-primary, font-weight-bold">
-                        {{led_B}}
-                    </span>
-                </v-card-item>
-                <v-card-item pa-0>Times</v-card-item>
-                <v-card-item>
-                    <v-btn text = "Update" class = "ma-1 text-caption" rounded = "pill" flat color = "secondary" variant = "tonal" @click = "updateLEDCount('ledB')"></v-btn>
-                </v-card-item>
-            </v-card>
-        </v-row>
-    </v-container>
 </template>
 
 <script setup>

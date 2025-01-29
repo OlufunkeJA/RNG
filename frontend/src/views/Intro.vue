@@ -75,8 +75,8 @@ onMounted(()=>{
     Mqtt.connect(); // Connect to Broker located on the backend
     setTimeout( ()=>{
     // Subscribe to each topic
-    Mqtt.subscribe("topic1");
-    Mqtt.subscribe("topic2");
+    Mqtt.subscribe("620162688");
+    Mqtt.subscribe("620162688_sub");
     },3000);    
 });
 
@@ -89,8 +89,9 @@ onBeforeUnmount(()=>{
 
 const toggle = (name) => {
     let message = JSON.stringify({"type":"toggle","device": name}); // Create message and convert to a json string
-    Mqtt.publish("topic",message); // Publish message to appropriate topic
+    Mqtt.publish("620162688_sub",message); // Publish message to appropriate topic
 }
+console.log()
 
 </script>
 
