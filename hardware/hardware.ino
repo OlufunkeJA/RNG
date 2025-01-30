@@ -397,13 +397,8 @@ void setLEDState(int8_t LED, int8_t state){
 
 void toggleLED(int8_t LED){
   // TOGGLES THE STATE OF SPECIFIC LED   
-
-  if (digitalRead(LED) == LOW){
-    digitalWrite(LED,HIGH);
-  }
-  else{
-    digitalWrite(LED,LOW);
-  }
+  int state = !digitalRead(LED);
+  digitalWrite(LED,state);
 }
 
 void GDP(void){
