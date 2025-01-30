@@ -263,6 +263,8 @@ void Display(unsigned char number){
   digitalWrite(g,LOW);
   digitalWrite(dp,LOW);*/
 
+  Serial.println(number);
+
   switch (number){
     case 1:
       digitalWrite(a,LOW);
@@ -277,11 +279,11 @@ void Display(unsigned char number){
 
     case 2:
       digitalWrite(a,HIGH);
-      digitalWrite(b,LOW);
+      digitalWrite(b,HIGH);
       digitalWrite(c,LOW);
       digitalWrite(d,HIGH);
-      digitalWrite(e,LOW);
-      digitalWrite(f,HIGH);
+      digitalWrite(e,HIGH);
+      digitalWrite(f,LOW);
       digitalWrite(g,HIGH);
       digitalWrite(dp,LOW);
       break;
@@ -293,7 +295,7 @@ void Display(unsigned char number){
       digitalWrite(d,HIGH);
       digitalWrite(e,LOW);
       digitalWrite(f,LOW);
-      digitalWrite(g,LOW);
+      digitalWrite(g,HIGH);
       digitalWrite(dp,LOW);
       break;
 
@@ -411,12 +413,9 @@ void GDP(void){
   /* Add code here to generate a random integer and then assign 
      this integer to number variable below
   */
-  number = 1 ;
 
-  while (number < 10 && number > 0){
-		srand(getTimeStamp());
-	  number = ((rand() % 9) + 0);
-  }
+  randomSeed(analogRead(22));
+  number = random(10);
 
   // DISPLAY integer on 7Seg. by 
   /* Add code here to calling appropriate function that will display integer to 7-Seg*/
