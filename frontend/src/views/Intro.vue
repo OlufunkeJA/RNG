@@ -1,12 +1,5 @@
 <template>
     <!-- HTML HERE -->    
-    <h2>New Template</h2>
-
-    <header></header>
-    <nav></nav> //navigation links
-    <section></section>
-    <aside></aside> //sidebar
-    <footer></footer>
 
     <v-container class = "container">
        <v-row class = "row, bg-surfaceVariant" align = "center">
@@ -30,7 +23,7 @@
                         <v-icon v-if="payload.ledB == 1" size="50" icon="mdi:mdi-lightbulb-on" color="yellow"></v-icon>
                     </v-card-item>
                     <v-card-item>
-                        <v-btn class = "text-caption" text = "Toggle" variant = "tonal" color = "primary" density = "compact" @click="toggle('LED A')"></v-btn>
+                        <v-btn class = "text-caption" text = "Toggle" variant = "tonal" color = "primary" density = "compact" @click="toggle('LED B')"></v-btn>
                     </v-card-item>
                 </v-card>
             </v-col>
